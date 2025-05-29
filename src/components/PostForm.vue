@@ -16,9 +16,9 @@
 </template>
 
 <script setup>
-import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { createPost, getPostById, updatePost } from '../services/postService';
 
 const router = useRouter();
 const route = useRoute();
@@ -38,7 +38,8 @@ onMounted(() => {
 
 const fetchPost = async (id) => {
   try {
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    //const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    const response = await getPostById(id);
     form.value = response.data;
   } catch (error) {
     console.error('Error fetching post:', error);
@@ -53,10 +54,12 @@ const submitForm = async () => {
   }
   try {
     if (isEdit.value) {
-      await axios.put(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`, form.value);
+     // await axios.put(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`, form.value);
+      await updatePost(route.params.id, form.value);  
       alert('Post actualizado');
     } else {
-      await axios.post('https://jsonplaceholder.typicode.com/posts', form.value);
+      //await axios.post('https://jsonplaceholder.typicode.com/posts', form.value);
+      await createPost(form.value);
       alert('Post creado');
     }
    // router.push('/');

@@ -14,7 +14,7 @@
             <td>{{ post.title }}</td>
             <td>
               <button class="btn btn-primary" @click="editPost(post.id)">Editar</button>
-              <button class="btn btn-danger"  @click="deletePost(post.id)">Eliminar</button>
+              <button class="btn btn-danger"  @click="removePost(post.id)">Eliminar</button>
             </td>
           </tr>
         </tbody>
@@ -50,10 +50,12 @@ const editPost = (id) => {
   router.push(`/edit/${id}`);
 };
 
-const deletePost = async (id) => {
+const removePost = async (id) => {
   try {
     await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
     posts.value = posts.value.filter(post => post.id !== id);
+    alert('Post eliminado');
+    // Refrescar la lista de posts después de eliminar
   } catch (error) {
     console.error('Error deleting post:', error);
   }
