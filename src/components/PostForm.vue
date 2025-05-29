@@ -16,6 +16,7 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 //import { createPost, getPostById, updatePost } from '../services/postService';
