@@ -26,7 +26,7 @@
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-
+import { getPosts } from '../services/postService'; // Asegúrate de que esta ruta sea correcta
 const posts = ref([]);
 const router = useRouter();
 
@@ -37,7 +37,7 @@ onMounted(() => {
 
 const fetchPosts = async () => {
   try {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    const response = await getPosts();
     posts.value = response.data;
   } catch (error) {
     console.error('error listado', error);
