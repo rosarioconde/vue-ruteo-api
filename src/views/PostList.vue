@@ -23,10 +23,9 @@
 </template>
 
 <script setup>
-import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getPosts } from '../services/postService'; // Asegúrate de que esta ruta sea correcta
+import { deletePost, getPosts } from '../services/postService'; // Asegúrate de que esta ruta sea correcta
 const posts = ref([]);
 const router = useRouter();
 
@@ -52,7 +51,7 @@ const editPost = (id) => {
 
 const removePost = async (id) => {
   try {
-    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    await deletePost(id);
     posts.value = posts.value.filter(post => post.id !== id);
     alert('Post eliminado');
     // Refrescar la lista de posts después de eliminar

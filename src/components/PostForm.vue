@@ -16,10 +16,9 @@
 </template>
 
 <script setup>
-import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { createPost, getPostsById } from '../services/postService'; // Asegúrate de que esta ruta sea correcta
+import { createPost, getPostsById, updatePost } from '../services/postService'; // Asegúrate de que esta ruta sea correcta
 
 const router = useRouter();
 const route = useRoute();
@@ -54,7 +53,7 @@ const submitForm = async () => {
   }
   try {
     if (isEdit.value) {
-      await axios.put(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`, form.value);
+      await updatePost(route.params.id, form.value);
       alert('Post actualizado');
     } else {
       await createPost(form.value);
