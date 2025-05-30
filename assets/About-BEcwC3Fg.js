@@ -1,0 +1,1 @@
+import{_ as n,c as s,a as e,b as o,o as a}from"./index-CgfJWLVb.js";const c={};function r(l,t){return a(),s("div",null,t[0]||(t[0]=[e("h1",null,"About",-1),e("p",null,[o(" This is an example of a Vue 3 component with the "),e("code",null,"script setup"),o(" syntax. ")],-1)]))}const p=n(c,[["render",r]]);export{p as default};
